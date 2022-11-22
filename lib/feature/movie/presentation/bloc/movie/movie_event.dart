@@ -7,7 +7,11 @@ abstract class MovieEvent extends Equatable {
   List<Object> get props => [];
 }
 
-class GetMovieEvent extends MovieEvent {}
+class GetMovieEvent extends MovieEvent {
+  final String page;
+
+  GetMovieEvent({required this.page});
+}
 
 /// in case need params
 // class GetMovieDetailEvent extends MovieEvent {

@@ -6,22 +6,22 @@ import 'package:flutter_boilerplate/feature/movie/domain/repositories/movie_repo
 
 import '../../../../core/error/failures.dart';
 
-class GetMovieUseCase implements UseCase<MovieModel, NoParams> {
+class GetMovieUseCase implements UseCase<MovieModel, GetMovieParams> {
   final MovieRepository repository;
 
   GetMovieUseCase(this.repository);
 
   @override
-  Future<Either<Failure, MovieModel>> call(NoParams params) {
-    return repository.getMovie();
+  Future<Either<Failure, MovieModel>> call(GetMovieParams params) {
+    return repository.getMovie(page: params.page);
   }
 }
 
-class ExampleParams extends Equatable {
-  final String movieID;
+class GetMovieParams extends Equatable {
+  final String page;
 
-  const ExampleParams({required this.movieID});
+  const GetMovieParams({required this.page});
 
   @override
-  List<Object?> get props => [movieID];
+  List<Object?> get props => [page];
 }

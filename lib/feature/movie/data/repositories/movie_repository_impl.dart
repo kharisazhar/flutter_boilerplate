@@ -15,10 +15,10 @@ class MovieRepositoryImpl implements MovieRepository {
       {required this.remoteDataSource, required this.networkInfo});
 
   @override
-  Future<Either<Failure, MovieModel>> getMovie() async {
+  Future<Either<Failure, MovieModel>> getMovie({required String page}) async {
     if (await networkInfo.isConnected) {
       try {
-        final remoteMovie = await remoteDataSource.getMovie();
+        final remoteMovie = await remoteDataSource.getMovie(page: page);
         return Right(remoteMovie);
       } catch (ex) {
         return Left(mapFailureException(ex));
